@@ -62,3 +62,66 @@
         margin-top: 24px;
     }
 }
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin: 24px 0 32px;
+}
+
+.summary-card {
+    padding: 16px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.summary-card p {
+    margin: 8px 0 0;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.game-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.game-card {
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.game-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.game-status {
+    display: inline-block;
+    margin: 0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #e8e8f5;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+    .summary-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .game-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 450px) {
+    .game-list {
+        grid-template-columns: 1fr;
+    }
+}
