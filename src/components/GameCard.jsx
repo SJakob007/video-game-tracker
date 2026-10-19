@@ -1,19 +1,19 @@
 /* GameCard Component: Displays one game's title and lets user update its status
 The game and onStatusChange function come from the parent */
 
-function GameCard({ game, onStatusChange }) {
+function GameCard({ game, onStatusChange, onRemoveGame }) {
     return (
         <article className="game-card">
             <h3>{game.title}</h3>
 
             <p className="game-status">{game.status}</p>
 
-            <label htmlFor={'status-${game.id}'}>
+            <label htmlFor={`status-${game.id}`}>
                 Change Status
             </label>
 
             <select
-                id={'status-${game.id}'}
+                id={`status-${game.id}`}
                 value={game.status}
                 onChange={(event) =>
                     onStatusChange(game.id, event.target.value)
@@ -23,6 +23,15 @@ function GameCard({ game, onStatusChange }) {
                 <option value="Playing">Playing</option>
                 <option value="Completed">Completed</option>
             </select>
+
+            <button 
+                className="remove-game-button"
+                type="button"
+                onClick={() => onRemoveGame(game.id)}
+                aria-label={`Remove ${game.title} from backlog`}
+            >
+                Remove
+            </button>
         </article>
     );
 }

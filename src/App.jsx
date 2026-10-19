@@ -36,7 +36,7 @@ function loadSavedGames() {
     return initialGames;
   } catch (error) {
     //Fall back to starter data if saved data cannot be read
-    console.error("Could not load saved games:". error);
+    console.error("Could not load saved games:", error);
     return initialGames; 
   }
 }
@@ -47,7 +47,8 @@ function App() {
   const [games, setGames] = useState(loadSavedGames);
   //Remember which view is currently displayed
   const [currentView, setCurrentView] = useState("dashboard");
-
+  //Load in light theme by default
+  const [theme, setTheme] = useState("light");
 
   //Save game array when changes are made, effect also runs after initial render.
   useEffect(() => {
@@ -85,18 +86,51 @@ function App() {
         );
   }
 
+  //Remove game that matches selected ID and ask for confirmation before removing a game.
+    function handleRemoveGame(gameId) {
+        // Find the game the user selected.
+        const gameToRemove = games.find((game) => game.id === gameId);
+
+        // Stop if the game could not be found.
+        if (!gameToRemove) {
+            return;
+        }
+
+        // Ask the user to confirm the removal.
+        const confirmed = window.confirm(
+            `Are you sure you want to remove "${gameToRemove.title}" from your backlog?`
+        );
+
+        // Keep the game if the user cancels.
+        if (!confirmed) {
+            return;
+        }
+
+        // Remove the game after confirmation.
+        setGames((previousGames) =>
+            previousGames.filter((game) => game.id !== gameId)
+        );
+    }
+
   return (
-    <div className="app">
-      <Header
-          currentView={currentView}
-          onChangeView={setCurrentView}
-      />
+    <div className={`app ${theme}-theme`}>
+            <Header
+                currentView={currentView}
+                onChangeView={setCurrentView}
+                theme={theme}
+                onToggleTheme={() =>
+                    setTheme((previousTheme) =>
+                        previousTheme === "light" ? "dark" : "light"
+                    )
+                }
+            />
 
       {currentView === "dashboard" ? (
         <Dashboard 
             games={games}
             onAddGame={handleAddGame}
             onStatusChange={handleStatusChange}
+            onRemoveGame={handleRemoveGame}
         />
       ) : (
         <About />

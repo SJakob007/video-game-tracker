@@ -4,7 +4,7 @@ import GameForm from "./GameForm";
 
 //Dashboard Component: Displays the game totals, add-game form, and game list
 
-function Dashboard({ games, onAddGame, onStatusChange }) {
+function Dashboard({ games, onAddGame, onStatusChange, onRemoveGame }) {
     return (
         <main className="dashboard">
             <h2>My Game Backlog</h2>
@@ -23,6 +23,7 @@ function Dashboard({ games, onAddGame, onStatusChange }) {
             <GameList 
                 games={games}
                 onStatusChange={onStatusChange}
+                onRemoveGame={onRemoveGame}
             />
         </main>
     );

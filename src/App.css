@@ -189,3 +189,124 @@
         max-width: none;
     }
 }
+
+.app {
+    min-height: 100vh;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.light-theme {
+    background-color: #f4f4f8;
+    color: #222;
+}
+
+.dark-theme {
+    background-color: #171923;
+    color: #f1f1f1;
+}
+
+.dark-theme .app-header {
+    background-color: #242a40;
+}
+
+.dark-theme .summary-card,
+.dark-theme .game-card,
+.dark-theme .game-form-section {
+    background-color: #242833;
+    border-color: #454957;
+    color: #f1f1f1;
+}
+
+.dark-theme .game-form input,
+.dark-theme .game-card select {
+    background-color: #171923;
+    border-color: #555b6b;
+    color: #f1f1f1;
+}
+
+.dark-theme .game-status {
+    background-color: #393d55;
+    color: #f1f1f1;
+}
+
+.remove-game-button {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px solid #b42332;
+    border-radius: 6px;
+    background-color: white;
+    color: #b42332;
+    cursor: pointer;
+}
+
+.remove-game-button:hover {
+    background-color: #b42332;
+    color: white;
+}
+
+.dark-theme .remove-game-button {
+    background-color: #242833;
+    color: #ff858e;
+    border-color: #ff858e;
+}
+
+.dark-theme .remove-game-button:hover {
+    background-color: #b42332;
+    color: white;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid limegreen;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .app-header {
+        padding: 18px 12px;
+    }
+
+    .app-header nav {
+        flex-wrap: wrap;
+    }
+
+    .app-header button {
+        padding: 9px 12px;
+    }
+
+    .dashboard,
+    .about {
+        width: 92%;
+        margin: 24px auto;
+    }
+
+    .summary-cards {
+        gap: 10px;
+    }
+
+    .game-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-error {
+    margin: 0;
+    color: #b42332;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.dark-theme .form-error {
+    color: #ff858e;
+}
+
+.game-form input[aria-invalid="true"] {
+    border: 2px solid #b42332;
+}
+
+.dark-theme .game-form input[aria-invalid="true"] {
+    border-color: #ff858e;
+}

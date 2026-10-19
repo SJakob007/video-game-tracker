@@ -7,6 +7,9 @@ function GameForm({ onAddGame }) {
     //Store text currently entered into the input
     const [title, setTitle] = useState("");
 
+    //Store the validation message when the input is invalid.
+    const [error, setError] = useState("");
+
     //Run when user submits the form.
     function handleSubmit(event) {
         //Stop browser from refreshing the page
@@ -17,8 +20,12 @@ function GameForm({ onAddGame }) {
 
         //No blank titles
         if (trimmedTitle === "") {
+            setError("Invalid game name!");
             return;
         }
+
+        //Clear any previous error
+        setError("");
 
         //Ask parent component to add the new game
         onAddGame(trimmedTitle);
@@ -38,10 +45,24 @@ function GameForm({ onAddGame }) {
                     id="game-title"
                     type="text"
                     value={title}
-                    onChange={(event) => setTitle(event.target.value)}
+                    onChange={(event) => {
+                        setTitle(event.target.value);
+
+                        //CLear error when user starts correcting it
+                        if (event.target.value.trim() !== "") {
+                            setError("");
+                        }
+                    }}
                     placeholder="Enter a game title"
-                    required
+                    aria-invalid={error !== ""}
+                    aria-describedby={error ? "game-title-error" : undefined}
                 />
+
+                {error && (
+                    <p id="game-title-error" className="form-error" role="alert">
+                        {error}
+                    </p>
+                )}
 
                 <button type="submit">Add Game</button>
             </form>

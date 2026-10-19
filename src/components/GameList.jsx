@@ -2,7 +2,7 @@ import GameCard from "./GameCard";
 
 /* GameList Component: Receives game array and displays a card for each */
 
-function GameList({ games, onStatusChange }) {
+function GameList({ games, onStatusChange, onRemoveGame }) {
     if (games.length === 0) {
         return <p>No games in your backlog yet. Add one above!</p>;
     }
@@ -14,7 +14,8 @@ function GameList({ games, onStatusChange }) {
                     key={game.id}
                     game={game}
                     onStatusChange={onStatusChange}
-                />
+                    onRemoveGame={onRemoveGame}
+                    />
             ))}
         </section>
     );
