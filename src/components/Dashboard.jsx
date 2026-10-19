@@ -1,8 +1,10 @@
 import SummaryCards from "./SummaryCards";
 import GameList from "./GameList";
+import GameForm from "./GameForm";
 
-//Dashboard Component: Receives game array from App and passes to its children
-function Dashboard({ games }) {
+//Dashboard Component: Displays the game totals, add-game form, and game list
+
+function Dashboard({ games, onAddGame, onStatusChange }) {
     return (
         <main className="dashboard">
             <h2>My Game Backlog</h2>
@@ -13,7 +15,15 @@ function Dashboard({ games }) {
             </p>
 
             <SummaryCards games={games} />
-            <GameList games={games} />
+
+            <GameForm onAddGame={onAddGame} />
+
+            <h2>My Games</h2>
+
+            <GameList 
+                games={games}
+                onStatusChange={onStatusChange}
+            />
         </main>
     );
 }

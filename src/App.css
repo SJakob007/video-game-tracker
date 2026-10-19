@@ -125,3 +125,67 @@
         grid-template-columns: 1fr;
     }
 }
+
+.game-form-section {
+    margin: 24px 0 32px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.game-form-section h2 {
+    margin-top: 0;
+}
+
+.game-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.game-form input,
+.game-card select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    background-color: white;
+    color: #222;
+}
+
+.game-form button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: midnightblue;
+    color: white;
+    cursor: pointer;
+}
+
+.game-form button:hover {
+    background-color: #303080;
+}
+
+.game-card label {
+    display: block;
+    margin: 16px 0 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.game-card select {
+    max-width: none;
+}
+
+@media (max-width: 450px) {
+    .game-form-section {
+        padding: 14px;
+    }
+
+    .game-form input {
+        max-width: none;
+    }
+}

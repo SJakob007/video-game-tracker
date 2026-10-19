@@ -60,6 +60,31 @@ function App() {
     }
   }, [games]);
 
+  //Add a new game to the game array
+  function handleAddGame(title) {
+    const newGame = {
+        id: Date.now(),
+        title: title,
+        status: "Want to Play"
+    };
+
+    setGames((previousGames) => [
+        ...previousGames,
+        newGame
+    ]);
+  }
+
+  //Update status of the game with matching ID
+  function handleStatusChange(gameId, newStatus) {
+    setGames((previousGames) => 
+        previousGames.map((game) => 
+            game.id === gameId
+                ? {...game, status: newStatus }
+              : game
+            )
+        );
+  }
+
   return (
     <div className="app">
       <Header
@@ -68,7 +93,11 @@ function App() {
       />
 
       {currentView === "dashboard" ? (
-        <Dashboard games={games} />
+        <Dashboard 
+            games={games}
+            onAddGame={handleAddGame}
+            onStatusChange={handleStatusChange}
+        />
       ) : (
         <About />
       )}

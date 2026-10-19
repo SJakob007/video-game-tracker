@@ -1,8 +1,10 @@
 import GameCard from "./GameCard";
 
-function GameList({ games }) {
+/* GameList Component: Receives game array and displays a card for each */
+
+function GameList({ games, onStatusChange }) {
     if (games.length === 0) {
-        return <p>No games in your backlog yet!</p>;
+        return <p>No games in your backlog yet. Add one above!</p>;
     }
 
     return (
@@ -11,6 +13,7 @@ function GameList({ games }) {
                 <GameCard
                     key={game.id}
                     game={game}
+                    onStatusChange={onStatusChange}
                 />
             ))}
         </section>
